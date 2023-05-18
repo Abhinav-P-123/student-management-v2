@@ -79,8 +79,8 @@ router.post("/add", (req, res) => {
 
 router.get("/delete/:id", (req, res) => {
     student.deleteOne({ studentAdNo: req.params.id }).then(data => {
-        res.redirect("/student")
+        res.redirect("/student");
+
     })
 })
-
 module.exports = router;
