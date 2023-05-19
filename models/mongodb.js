@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://abhi_user1:abhiMongoDB@cluster1.omlq013.mongodb.net/studentDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://abhi_user1:abhi1MongoDB@cluster1.omlq013.mongodb.net/studentDB", { useNewUrlParser: true });
 
 var studentSchema = mongoose.Schema({
     studentName: {
