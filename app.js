@@ -8,4 +8,4 @@ app.set("view engine", "ejs");
 const port = 2000;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use("/student", students);
-app.listen(port);
+app.listen(port || process.env.PORT);
