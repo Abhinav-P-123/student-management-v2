@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 router.post("/search/", (req, res) => {
     var studentName = req.body.studentName;
-    student.find({ studentName: { $regex: /studentName/ } }).then(students => {
+    student.find({ studentName: { $regex: `/${studentName}/` } }).then(students => {
         res.render("studentList", { students: students })
     })
 })
