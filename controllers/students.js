@@ -10,14 +10,14 @@ app.use(express.static("public"))
 
 router.get("/", (req, res) => {
     student.find({}).then(students => {
-        res.render("studentList", { students: students })
+        res.render("studentList", { students: students, searchString: "" })
     })
 })
 
 router.post("/search/", (req, res) => {
     var studentName = req.body.studentName;
-    student.find({ studentName: studentName }).then(students => {
-        res.render("studentList", { students: students })
+    student.find({ studentName: { $regex: new RegExp(studentName) } }).then(students => {
+        res.render("studentList", { students: students, searchString: studentName })
     })
 })
 
