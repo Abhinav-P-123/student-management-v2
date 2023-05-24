@@ -16,8 +16,13 @@ router.get("/", (req, res) => {
 
 router.post("/search/", (req, res) => {
     var studentName = req.body.studentName;
+<<<<<<< HEAD
     student.find({ studentName: { $regex: new RegExp(studentName) } }).then(students => {
         res.render("studentList", { students: students, searchString: studentName })
+=======
+    student.find({ studentName: { $regex: `/${studentName}/` } }).then(students => {
+        res.render("studentList", { students: students })
+>>>>>>> parent of 8de158b (changing the search query)
     })
 })
 
