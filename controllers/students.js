@@ -10,19 +10,27 @@ app.use(express.static("public"))
 
 router.get("/", (req, res) => {
     student.find({}).then(students => {
-        res.render("studentList", { students: students, searchString: "" })
+        res.render("studentList", { students: students, searchString: "", })
     })
 })
 
-router.post("/search/", (req, res) => {
+router.post("/search", (req, res) => {
     var studentName = req.body.studentName;
-<<<<<<< HEAD
-    student.find({ studentName: { $regex: new RegExp(studentName) } }).then(students => {
-        res.render("studentList", { students: students, searchString: studentName })
-=======
-    student.find({ studentName: { $regex: `/${studentName}/` } }).then(students => {
-        res.render("studentList", { students: students })
->>>>>>> parent of 8de158b (changing the search query)
+    student.find({ studentName: RegExp(studentName, "i") }).then(students => {
+        res.render("studentList", {
+            students: students, searchString: studentName,
+        })
+    })
+})
+
+router.get("/search", (req, res) => {
+    var studentName = req.body.studentName;
+    var pageNum = +req.query.page || 0;
+    var studentsPerPage = 3;
+    student.find({ studentName: studentName }).sort({ studentName: 1 }).skip(pageNum * studentsPerPage).limit(studentsPerPage).then(students => {
+        res.render("studentList", {
+            students: students, searchString: "", page: pageNum, paginationRoot: "/student/search?page="
+        })
     })
 })
 
@@ -75,7 +83,7 @@ router.post("/add", (req, res) => {
             })
         } else if (data.length > 0) {
             res.render("messagePage", {
-                messageHeading: "Addmission Number Dupplication",
+                messageing: "Addmission Number Dupplication",
                 messageDescription: "Addmission Number has already been used for another student"
             })
         }
