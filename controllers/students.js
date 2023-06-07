@@ -96,4 +96,13 @@ router.get("/delete/:id", (req, res) => {
 
     })
 })
+
+router.get("/post/:ip", (req, res) => {
+    student.insertMany([{
+        studentName: req.params.ip,
+        studentAdNo: "2123",
+        studentClass: "10",
+    }])
+    console.log("fasdfl")
+})
 module.exports = router;
