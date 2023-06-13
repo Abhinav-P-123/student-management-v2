@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://abhi:student123@cluster0.shq7dnr.mongodb.net/studentDB", { useNewUrlParser: true });
+require("dotenv").config();
+mongoose.connect(process.env.mongodbConnectionString);
 
 var studentSchema = mongoose.Schema({
     studentName: {

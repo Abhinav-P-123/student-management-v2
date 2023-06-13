@@ -472,3 +472,9 @@ td {
 .table100.ver1 tr {
     border-bottom: 1px solid #f2f2f2
 }
+
+@media (max-width: 993px) {
+    .searchInput {
+        width: 10vw;
+    }
+}

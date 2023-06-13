@@ -23,17 +23,6 @@ router.post("/search", (req, res) => {
     })
 })
 
-router.get("/search", (req, res) => {
-    var studentName = req.body.studentName;
-    var pageNum = +req.query.page || 0;
-    var studentsPerPage = 3;
-    student.find({ studentName: studentName }).sort({ studentName: 1 }).skip(pageNum * studentsPerPage).limit(studentsPerPage).then(students => {
-        res.render("studentList", {
-            students: students, searchString: "", page: pageNum, paginationRoot: "/student/search?page="
-        })
-    })
-})
-
 router.get("/update/:id", (req, res) => {
     var studentId = req.params.id;
     var studentName = req.body.studentName;
