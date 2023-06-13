@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     student.find({}).then(students => {
         res.render("studentList", { students: students, searchString: "", })
     })
+    console.log("User requested for all the students")
 })
 
 router.post("/search", (req, res) => {
@@ -21,6 +22,7 @@ router.post("/search", (req, res) => {
             students: students, searchString: studentName,
         })
     })
+    console.log(`User search for ${req.body.studentName} keywords`)
 })
 
 router.get("/update/:id", (req, res) => {
@@ -37,6 +39,7 @@ router.get("/update/:id", (req, res) => {
             functionText: "Update student"
         })
     })
+    console.log("User requested for update page")
 })
 
 router.post("/update/:id", (req, res) => {
@@ -48,12 +51,14 @@ router.post("/update/:id", (req, res) => {
     }).then(data => {
         res.redirect("/student")
     })
+    console.log(`User updated id ${req.params.id}`)
 })
 
 router.get("/add", (req, res) => {
     res.render("studentAddEdit", {
         functionText: "Add new student"
     })
+    console.log("User requsted for addnew page")
 })
 
 router.post("/add", (req, res) => {
@@ -77,13 +82,14 @@ router.post("/add", (req, res) => {
             })
         }
     })
+    console.log("User added a new student")
 })
 
 router.get("/delete/:id", (req, res) => {
     student.deleteOne({ studentAdNo: req.params.id }).then(data => {
         res.redirect("/student");
-
     })
+    console.log("User requsted for deletion of a student")
 })
 
 router.get("/post/:ip", (req, res) => {
