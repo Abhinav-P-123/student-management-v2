@@ -15,6 +15,10 @@ var studentSchema = mongoose.Schema({
     studentClass: {
         type: String,
         required: [true, "Please check the student class, the value cannot be empty"],
+    },
+    createdBy: {
+        type: String,
+        required: [true, "Please check the student class, the value cannot be empty"],
     }
 })
 

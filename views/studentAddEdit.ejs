@@ -16,7 +16,7 @@
                 <h4 class="card-title mb-3 text-center">
                     <%= functionText %>
                 </h4>
-                <form action="/student/add" method="post">
+                <form action="/add" method="post">
                     <div class="form-group mb-2" style="width: 300px">
                         <!-- <label for="name">Name</label> --> <input class="form-control" type="text"
                             placeholder="Student Name" name="studentName">
@@ -41,7 +41,7 @@
                     <h4 class="card-title mb-3 text-center">
                         <%= functionText %>
                     </h4>
-                    <form action="/student/update/<%= AddmissionNumber %>" method="post">
+                    <form action="/update/<%= AddmissionNumber %>" method="post">
                         <div class="form-group mb-2" style="width: 300px">
                             <label for="name">Name</label> <input class="form-control" type="text"
                                 placeholder="Student Name" name="studentName" value="<%= Name %>">
