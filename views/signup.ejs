@@ -11,6 +11,9 @@
 <body>
     <form action="/signup" method="post">
         <h1 class="singup-heading">Sign Up</h1>
+        <p class="error-message" style="color: red; margin: 0px;">
+            <%= error %>
+        </p>
         <div class="input-container">
             <input type="text" name="username" id="username" required />
             <label class="input-label" for="username">Username</label>

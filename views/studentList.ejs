@@ -23,8 +23,10 @@
         <form action="/search" method="post">
             <div class="search-div">
                 <input type="text" id="searchBar" placeholder="Enter Your Keywords" name="studentName">
-                <button id="search-btn" type="submit">Search</button>
-                <a href="/logout" id="logout-btn" style="text-decoration: none;">Logout</a>
+                <div class="searchbar-btn">
+                    <button id="search-btn" type="submit">Search</button>
+                    <a href="/logout" id="logout-btn" style="text-decoration: none;">Logout</a>
+                </div>
             </div>
         </form>
         <div>
@@ -34,7 +36,7 @@
                         <span>Name</span>
                     </div>
                     <div class="cell">
-                        <span>Addmission Number</span>
+                        <span>ID</span>
                     </div>
                     <div class="cell">
                         <span>Class</span>

@@ -470,7 +470,7 @@ td {
 
 @media (max-width: 993px) {
     .searchInput {
-        width: 10vw;
+        width: 20vw;
     }
 }
 
@@ -584,12 +584,6 @@ iframe {
     margin: 0
 }
 
-@media screen and (max-width:768px) {
-    .table {
-        display: block
-    }
-}
-
 .row {
     display: table-row;
 }
@@ -660,6 +654,7 @@ iframe {
     display: flex;
     padding: 1em;
     border-radius: 0.3rem;
+    width: 100%;
 }
 
 #searchBar {
@@ -684,6 +679,16 @@ iframe {
     top: 1px;
 }
 
+.search-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbar-btn {
+    display: flex;
+    flex-direction: row;
+}
+
 #search-btn {
     background-color: #fff;
     color: #000;
@@ -702,6 +707,13 @@ iframe {
     border-radius: 0.3em;
     padding: 1em;
     margin-left: 1rem;
+    border: 1px solid #fff;
+}
+
+#logout-btn:hover {
+    background-color: #fff;
+    color: #000;
+    transition: background-color 100ms, color 100ms;
 }
 
 .btn-group {
@@ -728,4 +740,32 @@ iframe {
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: 1px solid rgb(222, 226, 230);
+}
+
+@media (max-width: 626px) {
+    .search-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #searchBar {
+        width: 100%;
+    }
+
+    #search-btn {
+        box-sizing: border-box;
+        width: 50%;
+        margin-left: 0;
+    }
+
+    #logout-btn {
+        width: calc(50% - 1rem);
+        text-align: center;
+    }
+}
+
+@media (max-width: 437px) {
+    .row.table-header .cell:nth-of-type(4) {
+        width: 100%;
+    }
 }

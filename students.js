@@ -63,7 +63,7 @@ passport.use(new localStrategy(
     }
 ));
 
-router.get("/login", (req, res, next) => {
+router.route("/login").get((req, res, next) => {
     if (req.isAuthenticated() == false) {
         return next();
     } else if (req.isUnauthenticated() == false) {
@@ -71,9 +71,7 @@ router.get("/login", (req, res, next) => {
     }
 }, (req, res) => {
     res.render("login")
-})
-
-router.post("/login", passport.authenticate(
+}).post(passport.authenticate(
     "local", {
     successRedirect: "/",
     failureRedirect: "/login?error=true"
@@ -160,7 +158,7 @@ router.post("/add", (req, res) => {
                 studentName: studentName,
                 studentAdNo: studentAdNo,
                 studentClass: studentClass,
-                createdBy: req.session.passport.user.username
+                createdBy: req.session.passport.user.username,
             }).then(data => {
                 console.log(data);
                 res.redirect("/")
@@ -188,15 +186,6 @@ router.get("/delete/:id", (req, res, next) => {
     console.log("User requsted for deletion of a student")
 })
 
-router.get("/post/:ip", (req, res) => {
-    student.insertMany([{
-        studentName: req.params.ip,
-        studentAdNo: "2123",
-        studentClass: "10",
-    }])
-    console.log("fasdfl")
-})
-
 router.route("/signup").get((req, res, next) => {
     if (req.isAuthenticated() == false) {
         return next();
@@ -204,15 +193,21 @@ router.route("/signup").get((req, res, next) => {
         res.redirect("/")
     }
 }, (req, res) => {
-    res.sendFile(__dirname + "/signup.html")
+    res.render("signup", { error: "" })
 }).post((req, res) => {
-    bcrypt.hash(req.body.password, 10).then(hash => {
-        users.insertMany([{
-            username: req.body.username,
-            password: hash
-        }])
+    users.find({ username: req.body.username }).then(data => {
+        if (data.length == 0) {
+            bcrypt.hash(req.body.password, 15).then(hash => {
+                users.insertMany([{
+                    username: req.body.username,
+                    password: hash
+                }])
+            })
+            res.redirect("/login")
+        } else if (data.length > 0) {
+            res.render("signup", { error: "username already exists" })
+        }
     })
-    res.redirect("/login")
 })
 
 router.get("/logout", function (req, res) {
@@ -223,4 +218,5 @@ router.get("/logout", function (req, res) {
         res.redirect('/');
     });
 })
+
 module.exports = router;
