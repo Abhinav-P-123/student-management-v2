@@ -203,6 +203,7 @@ router.route("/signup").get((req, res, next) => {
                     password: hash
                 }])
             })
+            console.log(`new user have been added username - ${req.body.username}`)
             res.redirect("/login")
         } else if (data.length > 0) {
             res.render("signup", { error: "username already exists" })
