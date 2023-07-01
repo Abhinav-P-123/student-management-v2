@@ -198,10 +198,12 @@ router.route("/signup").get((req, res, next) => {
     users.find({ username: req.body.username }).then(data => {
         if (data.length == 0) {
             bcrypt.hash(req.body.password, 15).then(hash => {
-                users.insertMany([{
+                const newUser = new users({
+
                     username: req.body.username,
                     password: hash
-                }])
+                })
+                newUser.save()
             })
             console.log(`new user have been added username - ${req.body.username}`)
             res.redirect("/login")
