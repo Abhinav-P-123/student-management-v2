@@ -197,7 +197,7 @@ router.route("/signup").get((req, res, next) => {
 }).post((req, res) => {
     users.find({ username: req.body.username }).then(data => {
         if (data.length == 0) {
-            bcrypt.hash(req.body.password, 15).then(hash => {
+            bcrypt.hash(req.body.password, 3).then(hash => {
                 const newUser = new users({
                     username: req.body.username,
                     password: hash
